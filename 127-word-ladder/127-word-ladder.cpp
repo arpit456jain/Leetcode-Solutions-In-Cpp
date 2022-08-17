@@ -4,27 +4,28 @@ public:
         map<string,int> m;
         for(auto i : wordList)
         {
-            if(m.find(i) != m.end())
-                return 0;
-            else
-                m[i]=1;
+            if(i == beginWord)
+                continue;
+            m[i]=1;
         }
         if(m.find(endWord) == m.end())
             return 0;
         
-        // approach
-        // 1. push start word in queue
+        map<string,vector<string>> adj;
+        map<string,int> vis;
         queue<string> q;
         q.push(beginWord);
+        vis[beginWord] = 0;
         int level = 0;
         while(!q.empty())
         {
-            level++;
+    
             int size = q.size();
-            // cout<<size<<" ";
+            level++;
             for(int i=0;i<size;i++)
             {
                 string temp = q.front();
+                string cur = temp;
                 q.pop();
                 for(int i=0;i<temp.size();i++)
                 {
@@ -35,9 +36,10 @@ public:
                         // cout<<temp<<" ";
                         if(m.find(temp) != m.end())
                         {
-                            if(temp == endWord)
-                                return level+1;
+                          
                             q.push(temp);
+                            vis[temp] = level;
+                            adj[cur].push_back(temp);
                             m.erase(temp);
                         }
                     }
@@ -48,6 +50,9 @@ public:
                 
         }
         
-        return 0;
+        if(vis.find(endWord) == vis.end())
+            return 0;
+        
+        return vis[endWord]+1;
     }
 };
