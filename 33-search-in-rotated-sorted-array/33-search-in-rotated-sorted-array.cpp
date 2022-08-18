@@ -13,9 +13,9 @@ public:
             // first check which part is sorted 
             
             // left part sorted
-            if(nums[mid] >= nums[0])
+            if(nums[mid] >= nums[l])
             {
-                if(target>=nums[0] and target<=nums[mid])
+                if(target>=nums[l] and target<=nums[mid])
                 {
                     r = mid - 1;
                 }
