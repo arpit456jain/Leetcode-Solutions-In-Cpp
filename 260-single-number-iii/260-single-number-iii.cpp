@@ -2,16 +2,32 @@ class Solution {
 public:
     vector<int> singleNumber(vector<int>& nums) {
      
-        map<int,int> m;
+     int xor1 = 0;
         for(auto i : nums)
-            m[i]++;
+            xor1=xor1^i;
         
-        vector<int> ans;
-        for(auto i : m)
+        int cnt=0;
+        while(xor1)
         {
-            if(i.second == 1)
-                ans.push_back(i.first);
+            if(xor1&1)
+                break;
+            else
+            {
+                cnt++;
+                xor1 = xor1>>1;
+            }
         }
-        return ans;
+        int xor2 = 0;
+        int xor3 =0 ;
+        
+        for(auto i :nums)
+        {
+            if(i&(1<<cnt))
+                xor2 = xor2 xor i;
+            else
+                xor3 =  xor3^i;
+        }
+            
+        return {xor2,xor3};
     }
 };
