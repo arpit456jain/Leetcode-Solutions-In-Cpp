@@ -25,6 +25,8 @@ public:
         // TreeNode* tmp = root->left;
         // root->left = root->right;
         // root->right = tmp;
+        if(root->left == NULL and root->right == NULL)
+            return;
         swap(root->left,root->right);
         
         invert(root->left);
