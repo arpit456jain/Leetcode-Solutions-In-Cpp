@@ -17,11 +17,8 @@ public:
             if(m.find(i) != m.end() and m[i] == 0)
                 continue;
             
-            if(m.find(2*i) != m.end())
-            {
-                if(m[2*i] == 0)
-                    return {};
-            }
+            if(m.find(2*i) != m.end() and m[2*i] == 0)
+                return {};
             
             
             ans.push_back(i);
