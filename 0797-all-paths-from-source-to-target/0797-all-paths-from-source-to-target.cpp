@@ -22,8 +22,7 @@ public:
             tmp.pop_back();
         }
         
-        if(vis[cur]!=-1)
-            return;
+      
         
         vis[cur]=1;
         tmp.push_back(cur);
